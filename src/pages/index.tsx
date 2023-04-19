@@ -1,4 +1,12 @@
-import { Grid, GridItem } from "@chakra-ui/react";
+import {
+  Button,
+  Card,
+  CardBody,
+  Flex,
+  Grid,
+  GridItem,
+  Spacer,
+} from "@chakra-ui/react";
 import { type NextPage } from "next";
 import Head from "next/head";
 import { BsCloudRain } from "react-icons/bs";
@@ -6,7 +14,8 @@ import { MdOutlineThunderstorm, MdOutlineWaves } from "react-icons/md";
 import { GiCelebrationFire, GiNestBirds } from "react-icons/gi";
 import { CgCoffee } from "react-icons/cg";
 import { SoundCard } from "~/components/SoundCard";
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
+import { PomodoroCard } from "~/components/PomodoroCard";
 
 export type TAudio = {
   id: number;
@@ -77,11 +86,11 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="min-h-screen bg-slate-800">
+        <Spacer height={"3rem"} />
         <Grid
           className="w-5/6"
           alignItems={"center"}
           justifyContent={"center"}
-          height={"100vh"}
           templateColumns={"repeat(6, minmax(0, 1fr))"}
           gap={6}
           margin={"auto"}
@@ -98,6 +107,8 @@ const Home: NextPage = () => {
             );
           })}
         </Grid>
+        <Spacer height={"5"} />
+        <PomodoroCard />
       </main>
     </>
   );

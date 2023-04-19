@@ -38,7 +38,7 @@ export const SoundCard = ({
   };
 
   return (
-    <Card backgroundColor={"white"} color={"gray.800"}>
+    <Card borderColor={"gray.200"} color={"gray.800"}>
       <CardBody paddingBlock={"3"} paddingInline={"3"}>
         <Flex flexDirection={"column"} textAlign={"center"}>
           <Stack paddingBlock={"3"} paddingInline={"1"}>
