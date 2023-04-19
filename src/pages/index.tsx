@@ -18,7 +18,7 @@ const Home: NextPage = () => {
           alignItems={"center"}
           justifyContent={"center"}
           height={"100vh"}
-          templateColumns={"repeat(6, 1fr)"}
+          templateColumns={"repeat(8, minmax(0, 1fr))"}
           gap={6}
           marginInline={"10"}
         >

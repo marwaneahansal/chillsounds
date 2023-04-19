@@ -27,10 +27,10 @@ export const SoundCard = ({
   return (
     <Card backgroundColor={"white"} color={"gray.800"}>
       <CardBody paddingBlock={"3"} paddingInline={"3"}>
-        <Flex flexDirection={"column"}>
-          <Stack paddingBlock={"3"} paddingInline={"9"}>
+        <Flex flexDirection={"column"} textAlign={"center"}>
+          <Stack paddingBlock={"3"} paddingInline={"1"}>
             <Center>{icon}</Center>
-            <Text fontWeight={"semibold"} fontSize={"1.1rem"} marginTop={"5px"}>
+            <Text fontWeight={"semibold"} marginTop={"5px"}>
               {title}
             </Text>
           </Stack>
