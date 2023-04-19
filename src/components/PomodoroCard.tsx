@@ -8,8 +8,9 @@ import {
   Heading,
   Spacer,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { PomodoroBtn } from "./PomodoroBtn";
+import { Timer } from "./Timer";
 
 export const PomodoroCard = () => {
   const [activeBtn, setActiveBtn] = useState<
@@ -17,15 +18,64 @@ export const PomodoroCard = () => {
   >("Pomodoro");
 
   const [timer, setTimer] = useState<string>("25:00");
+  const [isTimerStarting, setIsTimeStarting] = useState<boolean>(false);
+
+  const toggleTimer = () => {
+    setIsTimeStarting((val) => !val);
+  };
 
   const onActiveBtnChange = (
     value: "Pomodoro" | "Short-Break" | "Long-Break"
   ) => {
     setActiveBtn(value);
-    if (value === "Pomodoro") setTimer("25:00");
-    else if (value === "Short-Break") setTimer("05:00");
-    else setTimer("15:00");
+    if (value === "Pomodoro") {
+      setTimer("25:00");
+    } else if (value === "Short-Break") {
+      setTimer("05:00");
+      // useCountdown(new Date().getTime() + 5 * 60 * 1000);
+    } else {
+      setTimer("15:00");
+      // useCountdown(new Date().getTime() + 15 * 60 * 1000);
+    }
   };
+
+  const onTimerStart = (value: "Pomodoro" | "Short-Break" | "Long-Break") => {
+    toggleTimer();
+    if (isTimerStarting) {
+      if (value === "Pomodoro") {
+        setInitialMinute(25);
+        setInitialSeconds(0);
+      }
+    }
+  };
+
+  const [initialMinute, setInitialMinute] = useState(25);
+  const [initialSeconds, setInitialSeconds] = useState(0);
+  const [minutes, setMinutes] = useState(initialMinute);
+  const [seconds, setSeconds] = useState(initialSeconds);
+  useEffect(() => {
+    const timerInterval: any = setInterval(() => {
+      if (seconds > 0) {
+        setSeconds(seconds - 1);
+      }
+      if (seconds === 0) {
+        if (minutes === 0) {
+          clearInterval(timerInterval);
+        } else {
+          setMinutes(minutes - 1);
+          setSeconds(59);
+        }
+      }
+      setTimer(
+        `${minutes < 10 ? "0" + minutes : minutes}:${
+          seconds < 10 ? "0" + seconds : seconds
+        }`
+      );
+    }, 1000);
+    return () => {
+      clearInterval(timerInterval);
+    };
+  });
 
   return (
     <Card
@@ -71,9 +121,7 @@ export const PomodoroCard = () => {
               </Flex>
             </GridItem>
           </Grid>
-          <Flex flexGrow={1} alignItems={"center"} justifyContent={"center"}>
-            <Heading fontSize={"9xl"}>{timer}</Heading>
-          </Flex>
+          <Timer timer={timer} />
           <Flex alignItems={"center"} justifyContent={"center"}>
             <Button
               colorScheme="linkedin"
@@ -81,8 +129,9 @@ export const PomodoroCard = () => {
               variant={"solid"}
               fontSize={"2xl"}
               paddingInline={"10"}
+              onClick={() => onTimerStart(activeBtn)}
             >
-              Start
+              {isTimerStarting ? "Pause" : "Start"}
             </Button>
           </Flex>
         </Flex>
