@@ -13,16 +13,35 @@ import {
 } from "@chakra-ui/react";
 import { ReactNode, useState } from "react";
 import { IconType } from "react-icons";
+import useSound from "use-sound";
 
 export const SoundCard = ({
   title,
   icon,
+  audio,
 }: {
   title: string;
   icon: ReactNode;
+  audio?: any;
 }) => {
   const [sliderValue, setSliderValue] = useState(0);
   const [showTooltip, setShowTooltip] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [playBackRate, setPlayBackRate] = useState(0);
+  const [play, { stop }] = useSound(audio, {
+    playbackRate: playBackRate,
+    loop: true,
+    interrupt: true,
+  });
+
+  const onSliderValueChange = (slideValue: number) => {
+    if (slideValue > 0) setIsPlaying(true);
+    else setIsPlaying(false);
+    setSliderValue(sliderValue);
+    setPlayBackRate(sliderValue / 100);
+    if (isPlaying) play();
+    else stop();
+  };
 
   return (
     <Card backgroundColor={"white"} color={"gray.800"}>
@@ -39,7 +58,7 @@ export const SoundCard = ({
             defaultValue={sliderValue}
             colorScheme="teal"
             size={"lg"}
-            onChange={(value) => setSliderValue(value)}
+            onChange={(value) => onSliderValueChange(value)}
             onMouseEnter={() => setShowTooltip(true)}
             onMouseLeave={() => setShowTooltip(false)}
           >

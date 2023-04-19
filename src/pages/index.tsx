@@ -34,6 +34,7 @@ const Home: NextPage = () => {
                   style={{ flexGrow: 1 }}
                 ></BsCloudRain>
               }
+              audio={"/sounds/rain.mp3"}
             />
           </GridItem>
           <GridItem>
