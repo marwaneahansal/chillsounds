@@ -12,8 +12,7 @@ import {
   Tooltip,
 } from "@chakra-ui/react";
 import { ReactNode, useState } from "react";
-import { IconType } from "react-icons";
-import useSound from "use-sound";
+import Sound from "react-sound";
 
 export const SoundCard = ({
   title,
@@ -26,21 +25,16 @@ export const SoundCard = ({
 }) => {
   const [sliderValue, setSliderValue] = useState(0);
   const [showTooltip, setShowTooltip] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
   const [playBackRate, setPlayBackRate] = useState(0);
-  const [play, { stop }] = useSound(audio, {
-    playbackRate: playBackRate,
-    loop: true,
-    interrupt: true,
-  });
+  const [isPlaying, setIsPlaying] = useState<"PLAYING" | "STOPPED" | "PAUSED">(
+    "STOPPED"
+  );
 
   const onSliderValueChange = (slideValue: number) => {
-    if (slideValue > 0) setIsPlaying(true);
-    else setIsPlaying(false);
-    setSliderValue(sliderValue);
-    setPlayBackRate(sliderValue / 100);
-    if (isPlaying) play();
-    else stop();
+    setSliderValue(slideValue);
+    setPlayBackRate(slideValue);
+    if (slideValue > 0) setIsPlaying("PLAYING");
+    else setIsPlaying("STOPPED");
   };
 
   return (
@@ -72,9 +66,15 @@ export const SoundCard = ({
               label={`${sliderValue}%`}
               zIndex={1000}
             >
-              {/* bgColor={"gray.800"} */}
               <SliderThumb />
             </Tooltip>
+            <Sound
+              url={audio}
+              playStatus={isPlaying}
+              volume={playBackRate}
+              loop={true}
+              autoLoad={true}
+            ></Sound>
           </Slider>
         </Flex>
       </CardBody>

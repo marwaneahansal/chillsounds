@@ -6,8 +6,69 @@ import { MdOutlineThunderstorm, MdOutlineWaves } from "react-icons/md";
 import { GiCelebrationFire, GiNestBirds } from "react-icons/gi";
 import { CgCoffee } from "react-icons/cg";
 import { SoundCard } from "~/components/SoundCard";
+import { ReactNode } from "react";
+
+export type TAudio = {
+  id: number;
+  title: string;
+  icon: ReactNode;
+  audio: any;
+};
 
 const Home: NextPage = () => {
+  const availableAudios: TAudio[] = [
+    {
+      id: 1,
+      title: "Rain",
+      icon: <BsCloudRain size={"2.5rem"} style={{ flexGrow: 1 }}></BsCloudRain>,
+      audio: "/sounds/rain.mp3",
+    },
+    {
+      id: 2,
+      title: "Thunder",
+      icon: (
+        <MdOutlineThunderstorm
+          size={"2.5rem"}
+          style={{ flexGrow: 1 }}
+        ></MdOutlineThunderstorm>
+      ),
+      audio: "/sounds/thunder.mp3",
+    },
+    {
+      id: 3,
+      title: "Waves",
+      icon: (
+        <MdOutlineWaves
+          size={"2.5rem"}
+          style={{ flexGrow: 1 }}
+        ></MdOutlineWaves>
+      ),
+      audio: "/sounds/waves.mp3",
+    },
+    {
+      id: 4,
+      title: "Fire",
+      icon: (
+        <GiCelebrationFire
+          size={"2.5rem"}
+          style={{ flexGrow: 1 }}
+        ></GiCelebrationFire>
+      ),
+      audio: "/sounds/fire.mp3",
+    },
+    {
+      id: 5,
+      title: "Coffee Shop",
+      icon: <CgCoffee size={"2.5rem"} style={{ flexGrow: 1 }}></CgCoffee>,
+      audio: "/sounds/coffee-shop.mp3",
+    },
+    {
+      id: 6,
+      title: "Birds",
+      icon: <GiNestBirds size={"2.5rem"} style={{ flexGrow: 1 }}></GiNestBirds>,
+      audio: "/sounds/birds.mp3",
+    },
+  ];
   return (
     <>
       <Head>
@@ -25,70 +86,17 @@ const Home: NextPage = () => {
           gap={6}
           margin={"auto"}
         >
-          <GridItem>
-            <SoundCard
-              title="Rain"
-              icon={
-                <BsCloudRain
-                  size={"2.5rem"}
-                  style={{ flexGrow: 1 }}
-                ></BsCloudRain>
-              }
-              audio={"/sounds/rain.mp3"}
-            />
-          </GridItem>
-          <GridItem>
-            <SoundCard
-              title="Thunder"
-              icon={
-                <MdOutlineThunderstorm
-                  size={"2.5rem"}
-                  style={{ flexGrow: 1 }}
-                ></MdOutlineThunderstorm>
-              }
-            />
-          </GridItem>
-          <GridItem>
-            <SoundCard
-              title="Waves"
-              icon={
-                <MdOutlineWaves
-                  size={"2.5rem"}
-                  style={{ flexGrow: 1 }}
-                ></MdOutlineWaves>
-              }
-            />
-          </GridItem>
-          <GridItem>
-            <SoundCard
-              title="Fire"
-              icon={
-                <GiCelebrationFire
-                  size={"2.5rem"}
-                  style={{ flexGrow: 1 }}
-                ></GiCelebrationFire>
-              }
-            />
-          </GridItem>
-          <GridItem>
-            <SoundCard
-              title="Coffee Shop"
-              icon={
-                <CgCoffee size={"2.5rem"} style={{ flexGrow: 1 }}></CgCoffee>
-              }
-            />
-          </GridItem>
-          <GridItem>
-            <SoundCard
-              title="Birds"
-              icon={
-                <GiNestBirds
-                  size={"2.5rem"}
-                  style={{ flexGrow: 1 }}
-                ></GiNestBirds>
-              }
-            />
-          </GridItem>
+          {availableAudios.map((audio) => {
+            return (
+              <GridItem key={audio.id}>
+                <SoundCard
+                  title={audio.title}
+                  icon={audio.icon}
+                  audio={audio.audio}
+                />
+              </GridItem>
+            );
+          })}
         </Grid>
       </main>
     </>
