@@ -86,7 +86,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="min-h-screen bg-slate-800">
-        <Spacer height={"3rem"} />
+        <Spacer height={"2rem"} />
         <Grid
           className="w-5/6"
           alignItems={"center"}
