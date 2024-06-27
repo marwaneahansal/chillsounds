@@ -37,8 +37,8 @@ export const Timer = ({
       setSeconds(0);
       setTimer("25:00");
     } else if (activeBtn === "Short-Break") {
-      setMinutes(0);
-      setSeconds(10);
+      setMinutes(5);
+      setSeconds(0);
       setTimer("05:00");
     } else {
       setMinutes(15);
