@@ -21,63 +21,64 @@ export type TAudio = {
   id: number;
   title: string;
   icon: ReactNode;
-  audio: any;
+  audio: string;
 };
 
+const availableAudios: TAudio[] = [
+  {
+    id: 1,
+    title: "Rain",
+    icon: <BsCloudRain size={"2.5rem"} style={{ flexGrow: 1 }}></BsCloudRain>,
+    audio: "/sounds/rain.mp3",
+  },
+  {
+    id: 2,
+    title: "Thunder",
+    icon: (
+      <MdOutlineThunderstorm
+        size={"2.5rem"}
+        style={{ flexGrow: 1 }}
+      ></MdOutlineThunderstorm>
+    ),
+    audio: "/sounds/thunder.mp3",
+  },
+  {
+    id: 3,
+    title: "Waves",
+    icon: (
+      <MdOutlineWaves
+        size={"2.5rem"}
+        style={{ flexGrow: 1 }}
+      ></MdOutlineWaves>
+    ),
+    audio: "/sounds/waves.mp3",
+  },
+  {
+    id: 4,
+    title: "Fire",
+    icon: (
+      <GiCelebrationFire
+        size={"2.5rem"}
+        style={{ flexGrow: 1 }}
+      ></GiCelebrationFire>
+    ),
+    audio: "/sounds/fire.mp3",
+  },
+  {
+    id: 5,
+    title: "Coffee Shop",
+    icon: <CgCoffee size={"2.5rem"} style={{ flexGrow: 1 }}></CgCoffee>,
+    audio: "/sounds/coffee-shop.mp3",
+  },
+  {
+    id: 6,
+    title: "Birds",
+    icon: <GiNestBirds size={"2.5rem"} style={{ flexGrow: 1 }}></GiNestBirds>,
+    audio: "/sounds/birds.mp3",
+  },
+];
+
 const Home: NextPage = () => {
-  const availableAudios: TAudio[] = [
-    {
-      id: 1,
-      title: "Rain",
-      icon: <BsCloudRain size={"2.5rem"} style={{ flexGrow: 1 }}></BsCloudRain>,
-      audio: "/sounds/rain.mp3",
-    },
-    {
-      id: 2,
-      title: "Thunder",
-      icon: (
-        <MdOutlineThunderstorm
-          size={"2.5rem"}
-          style={{ flexGrow: 1 }}
-        ></MdOutlineThunderstorm>
-      ),
-      audio: "/sounds/thunder.mp3",
-    },
-    {
-      id: 3,
-      title: "Waves",
-      icon: (
-        <MdOutlineWaves
-          size={"2.5rem"}
-          style={{ flexGrow: 1 }}
-        ></MdOutlineWaves>
-      ),
-      audio: "/sounds/waves.mp3",
-    },
-    {
-      id: 4,
-      title: "Fire",
-      icon: (
-        <GiCelebrationFire
-          size={"2.5rem"}
-          style={{ flexGrow: 1 }}
-        ></GiCelebrationFire>
-      ),
-      audio: "/sounds/fire.mp3",
-    },
-    {
-      id: 5,
-      title: "Coffee Shop",
-      icon: <CgCoffee size={"2.5rem"} style={{ flexGrow: 1 }}></CgCoffee>,
-      audio: "/sounds/coffee-shop.mp3",
-    },
-    {
-      id: 6,
-      title: "Birds",
-      icon: <GiNestBirds size={"2.5rem"} style={{ flexGrow: 1 }}></GiNestBirds>,
-      audio: "/sounds/birds.mp3",
-    },
-  ];
   return (
     <>
       <Head>

@@ -60,7 +60,11 @@ export const PomodoroCard = () => {
               </Flex>
             </GridItem>
           </Grid>
-          <Timer activeBtn={activeBtn} isTimerStarting={isTimerStarting} />
+          <Timer
+            activeBtn={activeBtn}
+            isTimerStarting={isTimerStarting}
+            setIsTimerStarting={setIsTimeStarting}
+          />
           <Flex alignItems={"center"} justifyContent={"center"}>
             <Button
               colorScheme="linkedin"

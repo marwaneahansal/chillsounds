@@ -1,4 +1,5 @@
 import {
+  Box,
   Card,
   CardBody,
   Center,
@@ -11,7 +12,8 @@ import {
   Text,
   Tooltip,
 } from "@chakra-ui/react";
-import { ReactNode, useState } from "react";
+import { type ReactNode, useState } from "react";
+import { MdGraphicEq } from "react-icons/md";
 import Sound from "react-sound";
 
 export const SoundCard = ({
@@ -21,7 +23,7 @@ export const SoundCard = ({
 }: {
   title: string;
   icon: ReactNode;
-  audio?: any;
+  audio: string;
 }) => {
   const [sliderValue, setSliderValue] = useState(0);
   const [showTooltip, setShowTooltip] = useState(false);
@@ -66,7 +68,9 @@ export const SoundCard = ({
               label={`${sliderValue}%`}
               zIndex={1000}
             >
-              <SliderThumb />
+              <SliderThumb boxSize={6}>
+                <Box as={MdGraphicEq} color={"teal"} />
+              </SliderThumb>
             </Tooltip>
             <Sound
               url={audio}
