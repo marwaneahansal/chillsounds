@@ -19,18 +19,19 @@ export const PomodoroCard = () => {
   return (
     <Card
       bgColor={"whiteAlpha.900"}
-      width={"600px"}
-      height={"350px"}
+      width={"100%"}
+      maxWidth={"600px"}
+      minHeight={"350px"}
+      height={"100%"}
       margin={"auto"}
     >
       <CardBody height={"100%"}>
         <Flex flexDir={"column"} height={"100%"}>
           <Grid
-            className="mx-auto w-3/4"
+            className="mx-auto w-full lg:w-3/4 gap-2 md:gap-0"
             alignItems={"center"}
             justifyContent={"center"}
-            templateColumns={"repeat(3, minmax(0, 1fr))"}
-            gap={0}
+            templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(3, 1fr)" }}
           >
             <GridItem>
               <Flex alignItems={"center"} justifyContent={"center"}>

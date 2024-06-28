@@ -89,12 +89,12 @@ const Home: NextPage = () => {
       <main className="min-h-screen bg-slate-800">
         <Spacer height={"2rem"} />
         <Grid
-          className="w-5/6"
+          className="w-full lg:w-5/6 px-4 lg:px-0"
           alignItems={"center"}
           justifyContent={"center"}
-          templateColumns={"repeat(6, minmax(0, 1fr))"}
           gap={6}
           margin={"auto"}
+          templateColumns={{ base: "repeat(2, 1fr)", md: "repeat(3, 1fr)", lg: "repeat(6, 1fr)" }}
         >
           {availableAudios.map((audio) => {
             return (
@@ -109,7 +109,9 @@ const Home: NextPage = () => {
           })}
         </Grid>
         <Spacer height={"5"} />
-        <PomodoroCard />
+        <div className="px-4 lg:px-0">
+          <PomodoroCard />
+        </div>
       </main>
     </>
   );
